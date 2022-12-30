@@ -1,0 +1,7 @@
+botella:
+// ETAPA: Rasterizacion
+	// Tengo informacion de los vertices, rasterizador los interpola y le pasa al fragment shader.
+	
+	// SOLUCION: Hacer el ultimo rectangulito chiquito hasta que se note muy poco. 
+	// Hacer calculo directamente en el fragment shader, no hay nada entre frag y frag para q se
+	// note el error. Si hay entre vertice y vertice.

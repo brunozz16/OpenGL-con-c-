@@ -1,0 +1,76 @@
+glm::vec3 warpPoint(const Delaunay &delaunay0, const Delaunay &delaunay1, glm::vec3 p) {
+	/// @todo: completar
+	
+//	vector<glm::vec3> vecDelaunay0 = delaunay0.getPuntos();
+//	vector<glm::vec3> vecDelaunay1 = delaunay1.getPuntos();
+//	Pesos pesos = calcularPesos(vecDelaunay0[0],vecDelaunay0[1],vecDelaunay0[2],p);
+//	glm::vec3 X;
+//	X=pesos*vecDelaunay1;
+	
+//adicional	
+//	X.y=pesos[1]*vecDelaunay1[1];
+//	X.z=pesos[2]*vecDelaunay1[2];
+	
+	
+	//p=X;
+	
+	return p;
+}
+-----------------------------------------------------------------------------------------------------------
+glm::vec3 warpPoint(const Delaunay &delaunay0, const Delaunay &delaunay1, glm::vec3 p) {
+	/// @todo: completar
+	
+	int indiceTriangulo=delaunay0.enQueTriangulo(p);
+	vector<Triangulo> triangulosDelaunay0=delaunay0.getTriangulos();
+	vector<Triangulo> triangulosDelaunay1=delaunay1.getTriangulos();
+	
+	vector<>
+	
+	Triangulo Td0=triangulosDelaunay0[indiceTriangulo];
+	Triangulo Td1=triangulosDelaunay1[indiceTriangulo];
+	
+	Pesos pesos1=calcularPesos(Td0[0],Td0[1],
+							   Td0[2],p);
+
+	
+	p.x=pesos1[0]*Td1.vertices[0];	
+	p.y=pesos1[1]*Td1.vertices[1];	
+	p.z=pesos1[2]*Td1.vertices[2];	
+		
+	return p;
+}
+------------------------------------------------------------------------------------------------
+glm::vec3 warpPoint(const Delaunay &delaunay0, const Delaunay &delaunay1, glm::vec3 p) {
+	/// @todo: completar
+	
+	int indiceTriangulo=delaunay0.enQueTriangulo(p);
+	vector<Triangulo> triangulosDelaunay0=delaunay0.getTriangulos();
+	vector<Triangulo> triangulosDelaunay1=delaunay1.getTriangulos();
+	
+	
+	Triangulo Td0=triangulosDelaunay0[indiceTriangulo];
+	Pesos pesos1=delaunay0.calcularPesos(indiceTriangulo,p);
+	Triangulo Td1=triangulosDelaunay1[indiceTriangulo];
+		
+	return p;
+}
+--------------------------------------------------------------------------------------
+glm::vec3 warpPoint(const Delaunay &delaunay0, const Delaunay &delaunay1, glm::vec3 p) {
+	/// @todo: completar
+	
+	vector<glm::vec3> puntosDelaunay0=delaunay0.getPuntos();
+	vector<glm::vec3> puntosDelaunay1=delaunay1.getPuntos();
+	vector<Triangulo> triangulosDelaunay1=delaunay1.getTriangulos();
+	int index=delaunay0.enQueTriangulo(p);
+	
+	Triangulo triangulo=triangulosDelaunay1[index];
+	
+	glm::vec3 puntosx=puntosDelaunay1[triangulo[0]];
+	glm::vec3 puntosy=puntosDelaunay1[triangulo[1]];
+	glm::vec3 puntosz=puntosDelaunay1[triangulo[2]];
+	Pesos pesos=calcularPesos(puntosx,puntosy,puntosz,p);
+	
+	p=puntosx*pesos[0]+puntosy*pesos[1]+pesos[2]*puntosz;
+		
+	return p;
+}

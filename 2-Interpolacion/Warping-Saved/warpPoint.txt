@@ -1,0 +1,21 @@
+	//Defino el vector de triangulos de delaunay0 (originales)
+	vector<Triangulo> vectorTrianguloOriginal=delaunay0.getTriangulos();
+	//Defino el vector de puntos de delaunay0
+	vector<glm::vec3> PO = delaunay0.getPuntos();
+	
+	//Defino el indice del triangulo donde se encuentra el punto p
+	int indice = delaunay0.enQueTriangulo(p);
+	
+	//Recupero el triangulo donde se encuentra ese punto
+	Triangulo TO = vectorTrianguloOriginal[indice];
+	
+	//Calculo los pesos para el punto p dentro del triangulo
+	Pesos pesos = calcularPesos(PO[TO[0]],PO[TO[1]],PO[TO[2]],p);	
+	
+	//Defino el vector de puntos de delaunay1 (Puntos Modificados)
+	vector<glm::vec3> PN = delaunay1.getPuntos();			
+	
+	p.x = ( pesos[0]* PN[TO[0]].x ) + ( pesos[1]* PN[TO[1]].x ) + ( pesos[2]* PN[TO[2]].x );  
+	p.y = ( pesos[0]* PN[TO[0]].y ) + ( pesos[1]* PN[TO[1]].y ) + ( pesos[2]* PN[TO[2]].y );
+	
+	return p;

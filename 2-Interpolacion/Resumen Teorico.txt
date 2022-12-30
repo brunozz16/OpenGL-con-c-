@@ -1,0 +1,4 @@
+Interpolacion
+*Teoria base que se usa en todos los sectores del pipeline y fuera(CPU)
+*Punto interpolado es un punto conocido o del dominio, Extrapolado es un punto fuera del dominio
+*Tiene sentido multiplicar vectores por escalares, pero no puntos por escalares.

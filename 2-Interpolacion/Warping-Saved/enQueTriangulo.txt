@@ -1,0 +1,23 @@
+//busca en que triangulo esta el peso positivo
+int Delaunay::enQueTriangulo(glm::vec3 &punto) const {
+	///Declara un indice de algun triangulo del vector de triangulos al azar
+	int i_tri = rand()%triangulos.size();
+	///Mientras ese indice sea distinto de -1
+	while (i_tri!=-1) {
+		///Se calculan los pesos de el punto para ese triangulo con la funcion privada
+		Pesos ff = calcularPesos(i_tri,punto);
+		///Declaramos un int que seria el indice del menor peso
+		int imin;
+		///Verificamos verificamos cual es el peso de menor tamano
+		if (ff[0] < ff[2]) {
+			if (ff[0] < ff[1]) imin=0;///si lo es lo asignamos el primero
+			else               imin=1;///si no sera el segundo peso
+		} else {
+			if (ff[2] < ff[1]) imin=2;///si no entra en el anterior if verificamos que el 3er peso sea menor que el segundo y si lo es lo asignamos
+			else               imin=1;///si no sera el segundo peso
+		}
+		if (ff[imin]>=0) break;///si el tamano del menor peso es mayor o igual a 0 es porque se encuentra dentro del triangulo
+		i_tri = triangulos[i_tri].vecinos[imin];///si llego aca es porque el peso de menor tamano dio menor a 0 por lo que se pasa a buscar en el vecino opuesto a ese vertice de menor peso 
+	}
+	return i_tri;
+}
